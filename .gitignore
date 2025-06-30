@@ -1,0 +1,46 @@
+# Ignorer l'environnement virtuel
+env/
+venv/
+.env/
+
+# Ignorer les fichiers de compilation Python
+__pycache__/
+*.py[cod]
+
+# Ignorer les logs et fichiers temporaires
+*.log
+*.tmp
+*.swp
+
+# Ignorer les fichiers de configuration et secrets
+*.env
+.envrc
+secrets.json
+config.yaml
+
+# Ignorer les fichiers générés par l'IDE (VS Code, PyCharm, etc.)
+.vscode/
+.idea/
+*.iml
+
+# Ignorer les dépendances locales (si utilisées)
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Ignorer les fichiers de tests et rapports
+.tox/
+.nox/
+coverage.xml
+htmlcov/
+
+# Ignorer les artefacts de build
+build/
+dist/
+*.egg-info/
+
+# Ignorer les dossiers spécifiques
+
+# Ignorer tous les fichiers .zip
+*.zip
+
+.DS_Store

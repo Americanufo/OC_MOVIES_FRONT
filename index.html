@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=844, initial-scale=1" />
+  <title>JustStreamIt</title>
+  <link href="style.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header id="banner">
+    <img src="/images/logo.png" alt="logo oc movies" class="logo" />
+    <h1>Vidéos à la demande</h1>
+  </header>
+
+  <main>
+    <!-- Meilleur film -->
+    <section class="category-section">
+      <h2 class="section-title">Meilleur film</h2>
+      <div class="meilleur-film-rectangle">
+        <div class="bestmovie-content">
+          <img src="/images/big.png" alt="big" class="affichefilm" />
+          <div class="info">
+            <span class="titre-film">The Big Lebowski</span>
+            <span class="desc-film">
+              Jeff "The Dude" Lebowski, mistaken for a millionaire of the same name, seeks restitution for his ruined rug and enlists his bowling buddies to help get it.
+            </span>
+          </div>
+          <button class="button-bas">Détails</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Films les mieux notés -->
+    <section class="category-section">
+      <h2 class="section-title">Films les mieux notés</h2>
+      <div class="category-grid">
+        <div class="category-item"><img src="/images/titanic.png" alt="titanic"></div>
+        <div class="category-item"><img src="/images/retour.png" alt="retour"></div>
+        <div class="category-item"><img src="/images/scarface.png" alt="scarface"></div>
+        <div class="category-item"><img src="/images/pulpfiction.png" alt="pulpfiction"></div>
+        <div class="category-item"><img src="/images/parain.png" alt="parain"></div>
+        <div class="category-item"><img src="/images/alien.png" alt="alien"></div>
+      </div>
+    </section>
+
+    <!-- Mystery -->
+    <section class="category-section">
+      <h2 class="section-title">Mystery</h2>
+      <div class="category-rectangle">
+        <div class="category-grid">
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action -->
+    <section class="category-section">
+      <h2 class="section-title">Action</h2>
+      <div class="category-rectangle">
+        <div class="category-grid">
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Autres avec menu déroulant -->
+    <section class="category-section">
+      <div class="category-header">
+        <h2 class="section-title">Autres :</h2>
+        <div class="custom-select-wrapper">
+          <select class="menu-deroulant">
+            <option value="">Films d'action</option>
+            <option value="comedies">Comédies</option>
+            <option value="famille">Famille</option>
+          </select>
+          <span class="custom-arrow">▼</span>
+        </div>
+      </div>
+      <div class="category-rectangle">
+        <div class="category-grid">
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

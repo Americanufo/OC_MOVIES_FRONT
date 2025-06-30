@@ -1,0 +1,328 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Oswald", Arial, sans-serif;
+  background: #f7f7f7;
+}
+
+#banner {
+  width: 844px;
+  max-width: 98vw;
+  margin: 32px auto 40px auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* align left */
+  gap: 2vw;
+  background: #61787f;
+  padding: 2vw 4vw 2vw 2vw; /* padding-left réduit */
+  box-sizing: border-box;
+  border-radius: 0;
+}
+.logo {
+  width: 7vw;
+  min-width: 48px;
+  max-width: 96px;
+  height: auto;
+  margin-left: 0; /* aucun décalage */
+}
+#banner h1 {
+  color: #fff;
+  font-size: 2.5vw;
+  font-weight: 200; /* texte plus fin */
+  margin: 0;
+  margin-left: 0;
+  letter-spacing: 0;
+  font-family: "Oswald", Arial, sans-serif;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 0 32px 0;
+}
+
+.category-section {
+  width: 844px;
+  max-width: 98vw;
+  margin: 0 auto 40px auto;
+  position: relative;
+}
+.section-title {
+  color: #000;
+  font-family: "Oswald", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  margin-top: 0;
+  line-height: 1.1;
+  text-align: left;
+  padding-left: 0;
+}
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+  padding-left: 0;
+}
+
+/* Rectangle "Meilleur film" */
+.meilleur-film-rectangle {
+  width: 100%;
+  background: rgba(255,255,255,0.95);
+  border: 6px solid #000;
+  border-radius: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  min-height: 220px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.09);
+  position: relative;
+}
+.bestmovie-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+  position: relative;
+}
+.affichefilm {
+  width: 180px;
+  height: auto;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-width: 0;
+}
+.titre-film {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #000;
+  margin-bottom: 12px;
+}
+.desc-film {
+  font-weight: 250;
+  font-size: 1.7rem;
+  color: #333;
+  margin-top: -30px;
+  white-space: pre-line;
+  max-width: none;
+  width: 100%;
+}
+.button-bas {
+  position: absolute;
+  bottom: 32px;
+  right: -15px;
+  min-width: 100px;
+  height: 44px;
+  border-radius: 22px;
+  background: #fa0b0b;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: none;
+  padding: 0 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background 0.2s;
+}
+.button-bas:hover {
+  background: #b10000;
+}
+
+/* Grille films les mieux notés : PAS de rectangle autour */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  width: 92%;
+  height: 410px;
+  align-items: center;
+  justify-items: center;
+  margin: 0 auto 40px auto;
+  background: none;
+  box-sizing: border-box;
+}
+.category-item {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  background: rgba(255,255,255,0.01);
+  border: 2px dashed rgba(0,0,0,0.2);
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.category-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: none;
+}
+.category-item:hover {
+  background-color: rgba(217, 217, 217, 0.3);
+}
+
+/* Rectangle de fond pour catégories autres que "Films les mieux notés" */
+.category-rectangle {
+  width: 100%;
+  max-width: 844px;
+  height: 410px;
+  background: rgba(217,217,217,1);
+  margin: 0 auto 40px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.category-rectangle .category-grid {
+  margin: 0;
+  width: 92%;
+  height: 88%;
+  background: none;
+}
+
+/* Menu déroulant */
+.custom-select-wrapper {
+  position: relative;
+  width: 300px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+}
+.menu-deroulant {
+  width: 100%;
+  height: 100%;
+  font-family: "Oswald", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  border: 1px solid #000;
+  background: #fff;
+  padding: 0 50px 0 15px;
+  appearance: none;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+.menu-deroulant::-ms-expand { display: none; }
+.menu-deroulant::-webkit-select-arrow { display: none; }
+.menu-deroulant:focus { outline: none; }
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  font-family: "Oswald", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 36px;
+  color: #000;
+  background: transparent;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Responsive : Tablette (4 films 2x2), Mobile (2 films 1x2) */
+@media (max-width: 900px) {
+  #banner,
+  .category-section,
+  .category-rectangle {
+    width: 98vw;
+    max-width: 98vw;
+  }
+  .category-rectangle,
+  .category-grid {
+    height: 270px;
+  }
+  .category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    width: 92%;
+    height: 88%;
+  }
+  .category-item:nth-child(n+5) {
+    display: none;
+  }
+  .bestmovie-content {
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .affichefilm {
+    width: 40vw;
+    max-width: 160px;
+  }
+  .button-bas {
+    bottom: 16px;
+    right: 16px;
+  }
+}
+@media (max-width: 600px) {
+  #banner,
+  .category-section,
+  .category-rectangle {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .category-rectangle,
+  .category-grid {
+    height: 140px;
+  }
+  .category-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    width: 80%;
+    height: 88%;
+  }
+  .category-item:nth-child(n+3) {
+    display: none;
+  }
+  .section-title,
+  .menu-deroulant {
+    font-size: 6vw;
+  }
+  .custom-select-wrapper {
+    width: 60vw;
+    height: 48px;
+  }
+  .menu-deroulant {
+    font-size: 5vw;
+    padding-right: 40px;
+  }
+  .custom-arrow {
+    font-size: 5vw;
+    width: 28px;
+    height: 28px;
+    right: 8px;
+  }
+}
