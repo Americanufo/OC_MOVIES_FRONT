@@ -11,24 +11,26 @@ body {
   margin: 32px auto 40px auto;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* align left */
+  justify-content: flex-start; 
   gap: 2vw;
   background: #61787f;
-  padding: 2vw 4vw 2vw 2vw; /* padding-left réduit */
+  padding: 2vw 4vw 2vw 2vw; 
   box-sizing: border-box;
   border-radius: 0;
 }
+
 .logo {
   width: 7vw;
   min-width: 48px;
   max-width: 96px;
   height: auto;
-  margin-left: 0; /* aucun décalage */
+  margin-left: 0; 
 }
+
 #banner h1 {
   color: #fff;
   font-size: 2.5vw;
-  font-weight: 200; /* texte plus fin */
+  font-weight: 200; 
   margin: 0;
   margin-left: 0;
   letter-spacing: 0;
@@ -47,6 +49,7 @@ main {
   margin: 0 auto 40px auto;
   position: relative;
 }
+
 .section-title {
   color: #000;
   font-family: "Oswald", Arial, sans-serif;
@@ -58,6 +61,7 @@ main {
   text-align: left;
   padding-left: 0;
 }
+
 .category-header {
   display: flex;
   align-items: center;
@@ -113,7 +117,7 @@ main {
   font-weight: 250;
   font-size: 1.7rem;
   color: #333;
-  margin-top: -30px;
+  margin-top: -10px;
   white-space: pre-line;
   max-width: none;
   width: 100%;
@@ -142,7 +146,7 @@ main {
   background: #b10000;
 }
 
-/* Grille films les mieux notés : PAS de rectangle autour */
+/* Grille films les mieux notés  */
 .category-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -181,7 +185,7 @@ main {
   background-color: rgba(217, 217, 217, 0.3);
 }
 
-/* Rectangle de fond pour catégories autres que "Films les mieux notés" */
+/* Rectangle de fond pour les autres catégories */
 .category-rectangle {
   width: 100%;
   max-width: 844px;
@@ -326,3 +330,61 @@ main {
     right: 8px;
   }
 }
+
+/* Ajout de la banière cliquable sur les affiche de film */
+.category-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.movie-overlay {
+  position: absolute;
+  left: 0;
+  top: 30px; /* Décalage vertical depuis le haut de l'image */
+  width: 100%;
+  min-height: 70px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 0; /* Pas de bord arrondi sur l'encart */
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 10px 16px 10px 16px;
+  box-sizing: border-box;
+}
+
+.movie-title {
+  color: #fff;
+  font-size: 1.08rem;
+  font-family: "Oswald", Arial, sans-serif;
+  font-weight: 600;
+  align-self: flex-start; /* Place le titre à gauche */
+  margin: 0;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: left;
+  line-height: 1.1;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+
+.movie-detail-btn {
+  align-self: flex-end;
+  background: rgba(45, 44, 44, 1);
+  color: #fff;
+  border: none;
+  border-radius: 16px; 
+  padding: 6px 18px;
+  font-size: 1rem;
+  font-family: "Oswald", Arial, sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 8px;
+}
+.movie-detail-btn:hover {
+  background: #fa0b0b;
+  color: #fff;
+}
+
