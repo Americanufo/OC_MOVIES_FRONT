@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=844, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>JustStreamIt</title>
   <link href="style.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
@@ -27,7 +27,7 @@
             <span class="titre-film">Titre du meilleur film</span>
             <span class="desc-film">Résumé du meilleur film.</span>
           </div>
-          <button class="button-bas">Détails</button>
+          <button class="button-bas movie-detail-btn">Détails</button>
         </div>
       </div>
     </section>
@@ -96,5 +96,22 @@
       </div>
     </section>
   </main>
+  <div id="movie-modal" class="modal-overlay" style="display:none;">
+  <div class="modal-content">
+    <div class="modal-main-row">
+      <div class="modal-details">
+        <h2 class="modal-title"></h2>
+        <p class="modal-meta"></p>
+        <p class="modal-directors"><strong>Réalisé par:</strong> <span></span></p>
+        <p class="modal-description"></p>
+        <p class="modal-actors"></p>
+      </div>
+      <div class="modal-img-wrapper">
+        <img class="modal-movie-img" src="" alt="" />
+      </div>
+    </div>
+    <button class="button-bas modal-close">Fermer</button>
+  </div>
+</div>
 </body>
 </html>
