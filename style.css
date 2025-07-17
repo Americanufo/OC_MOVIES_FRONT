@@ -1,3 +1,7 @@
+/************************
+BASE : Styles Desktop 
+*************************/
+
 body {
   margin: 0;
   padding: 0;
@@ -70,7 +74,7 @@ main {
   padding-left: 0;
 }
 
-/* Rectangle "Meilleur film" */
+/* Rectangle "Meilleur film" AVEC bordure épaisse */
 .meilleur-film-rectangle {
   width: 100%;
   background: rgba(255,255,255,0.95);
@@ -85,6 +89,7 @@ main {
   box-shadow: 0 2px 12px rgba(0,0,0,0.09);
   position: relative;
 }
+
 .bestmovie-content {
   display: flex;
   align-items: flex-start;
@@ -125,7 +130,8 @@ main {
 .button-bas {
   bottom: 32px;
   right: -15px;
-  min-width: 100px;
+  width: 150px;
+  margin-inline: auto;
   height: 44px;
   border-radius: 22px;
   background: #fa0b0b;
@@ -152,20 +158,40 @@ main {
   background: #b10000;
 }
 
-/* Grille films les mieux notés  */
+/* Categories RECTANGLES : PAS DE BORDURE */
+.category-rectangle {
+  width: 100%;
+  max-width: 844px;
+  min-height: 410px;
+  height: auto;
+  background: rgba(217,217,217,1);
+  margin: 0 auto 40px auto;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 0;
+  flex-direction: column;
+}
+
+/* Grille de films dans les rectangles */
+.category-rectangle .category-grid,
 .category-grid {
+  margin: 0 auto;
+  width: 92%;
+  height: 88%;
+  background: none;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 24px;
-  width: 92%;
-  height: 410px;
   align-items: center;
   justify-items: center;
-  margin: 0 auto 40px auto;
-  background: none;
-  box-sizing: border-box;
 }
+
 .category-item {
   width: 100%;
   height: 100%;
@@ -179,6 +205,7 @@ main {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  position: relative;
 }
 .category-item img {
   width: 100%;
@@ -191,166 +218,15 @@ main {
   background-color: rgba(217, 217, 217, 0.3);
 }
 
-/* Rectangle de fond pour les autres catégories */
-.category-rectangle {
-  width: 100%;
-  max-width: 844px;
-  height: 410px;
-  background: rgba(217,217,217,1);
-  margin: 0 auto 40px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-.category-rectangle .category-grid {
-  margin: 0;
-  width: 92%;
-  height: 88%;
-  background: none;
-}
-
-/* Menu déroulant */
-.custom-select-wrapper {
-  position: relative;
-  width: 300px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-}
-.menu-deroulant {
-  width: 100%;
-  height: 100%;
-  font-family: "Oswald", Arial, sans-serif;
-  font-weight: 600;
-  font-size: 30px;
-  border: 1px solid #000;
-  background: #fff;
-  padding: 0 50px 0 15px;
-  appearance: none;
-  cursor: pointer;
-  box-sizing: border-box;
-}
-.menu-deroulant::-ms-expand { display: none; }
-.menu-deroulant::-webkit-select-arrow { display: none; }
-.menu-deroulant:focus { outline: none; }
-.custom-arrow {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  transform: translateY(-50%);
-  width: 36px;
-  height: 36px;
-  font-family: "Oswald", Arial, sans-serif;
-  font-weight: 600;
-  font-size: 36px;
-  line-height: 36px;
-  color: #000;
-  background: transparent;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  user-select: none;
-}
-
-/* Responsive : Tablette (4 films 2x2), Mobile (2 films 1x2) */
-@media (max-width: 900px) {
-  #banner,
-  .category-section,
-  .category-rectangle {
-    width: 98vw;
-    max-width: 98vw;
-  }
-  .category-rectangle,
-  .category-grid {
-    height: 270px;
-  }
-  .category-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 16px;
-    width: 92%;
-    height: 88%;
-  }
-  .category-item:nth-child(n+5) {
-    display: none;
-  }
-  .bestmovie-content {
-    flex-direction: column;
-    gap: 16px;
-    align-items: flex-start;
-  }
-  .affichefilm {
-    width: 40vw;
-    max-width: 160px;
-  }
-  .button-bas {
-    bottom: 16px;
-    right: 16px;
-  }
-}
-@media (max-width: 600px) {
-  #banner,
-  .category-section,
-  .category-rectangle {
-    width: 100vw;
-    max-width: 100vw;
-    min-width: 0;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .category-rectangle,
-  .category-grid {
-    height: 140px;
-  }
-  .category-grid {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-    width: 80%;
-    height: 88%;
-  }
-  .category-item:nth-child(n+3) {
-    display: none;
-  }
-  .section-title,
-  .menu-deroulant {
-    font-size: 6vw;
-  }
-  .custom-select-wrapper {
-    width: 60vw;
-    height: 48px;
-  }
-  .menu-deroulant {
-    font-size: 5vw;
-    padding-right: 40px;
-  }
-  .custom-arrow {
-    font-size: 5vw;
-    width: 28px;
-    height: 28px;
-    right: 8px;
-  }
-}
-
-/* Ajout de la banière cliquable sur les affiche de film */
-.category-item {
-  position: relative;
-  overflow: hidden;
-}
-
+/* Overlay titre+detail bouton */
 .movie-overlay {
   position: absolute;
   left: 0;
-  top: 30px; /* Décalage vertical depuis le haut de l'image */
+  top: 30px;
   width: 100%;
   min-height: 70px;
   background: rgba(0, 0, 0, 0.7);
-  border-radius: 0; /* Pas de bord arrondi sur l'encart */
+  border-radius: 0;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -358,13 +234,12 @@ main {
   padding: 10px 16px 10px 16px;
   box-sizing: border-box;
 }
-
 .movie-title {
   color: #fff;
   font-size: 1.08rem;
   font-family: "Oswald", Arial, sans-serif;
   font-weight: 600;
-  align-self: flex-start; /* Place le titre à gauche */
+  align-self: flex-start;
   margin: 0;
   max-width: 80%;
   white-space: nowrap;
@@ -374,8 +249,6 @@ main {
   line-height: 1.1;
   text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
-
-/* Bouton "Détails" dans les grilles */
 .category-item .movie-detail-btn {
   align-self: flex-end;
   background: rgba(45, 44, 44, 1);
@@ -390,148 +263,485 @@ main {
   transition: background 0.2s, color 0.2s;
   margin-top: 8px;
 }
-
 .category-item .movie-detail-btn:hover {
   background: #fa0b0b;
   color: #fff;
 }
 
-/* Overlay sombre couvrant toute la fenêtre */
- .modal-overlay {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.55);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* aucun scroll ici */
+/************************
+Responsive Tablette
+*************************/
+@media (min-width: 426px) and (max-width: 900px) {
+  .category-rectangle {
+    min-height: 360px;
+    height: auto;
+    padding-bottom: 18px;
+    border: none;
+  }
+  .category-rectangle .category-grid,
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 16px;
+    width: 92%;
+    height: auto;
+    min-height: 0;
+  }
+  .category-item {
+    width: 100%;
+    height: auto;
+    min-height: 130px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .category-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 0;
+    max-height: none;
+    display: block;
+  }
+  /* Limite à 4 films pour tablette */
+  .category-item:nth-child(n+5) {
+    display: none;
+  }
+  .meilleur-film-rectangle {
+    border: 6px solid #000;
+  }
+  .meilleur-film-rectangle .bestmovie-content {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 32px;
+    position: relative;
+  }
+  .meilleur-film-rectangle .affichefilm {
+    order: 1;
+    width: 160px;
+    max-width: 40vw;
+    height: auto;
+    margin-left: 0;
+    margin-right: 24px;
+    align-self: flex-start;
+  }
+  .meilleur-film-rectangle .info {
+    order: 2;
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
+    text-align: left;
+    gap: 6px;
+    position: relative;
+  }
+  .meilleur-film-rectangle .button-bas {
+    position: static !important;
+    margin-top: 28px !important;
+    margin-bottom: 0 !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    align-self: flex-end !important;
+    width: auto !important;
+    min-width: 120px !important;
+    display: inline-flex !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    order: 99;
+  }
 }
 
+/************************
+Responsive Mobile
+*************************/
+@media (max-width: 425px) {
+  .category-rectangle {
+    min-height: 240px;
+    height: auto;
+    padding-bottom: 14px;
+    border: none;
+    border-radius: 0;
+    background: rgba(217,217,217,1);
+    width: 100%;
+    max-width: 98vw;
+    margin: 0 auto 40px auto;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .category-rectangle .category-grid,
+  .category-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+    width: 96vw;
+    gap: 14px;
+    height: auto;
+    min-width: 0;
+    margin: 0 auto;
+  }
+  .category-item {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 148px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    border-width: 1.5px;
+    font-size: 1rem;
+    position: relative;
+  }
+  .category-item:nth-child(n+3) {
+    display: none;
+  }
+  .category-item img {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    top: 0; left: 0;
+    z-index: 1;
+  }
+  .movie-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 22%;
+    transform: translateY(-12%);
+    width: 100%;
+    background: rgba(0,0,0,0.72);
+    padding: 8px 10px 11px 10px;
+    box-sizing: border-box;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 2;
+  }
+  .movie-title {
+    font-size: 1.08rem;
+    margin: 0 0 2px 0;
+    white-space: normal;
+    max-width: 100%;
+    color: #fff;
+    line-height: 1.09;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.38);
+  }
+  .category-item .movie-detail-btn {
+    font-size: 0.98rem;
+    align-self: flex-end;
+    margin-top: 4px;
+    padding: 4px 13px;
+    min-width: 66px;
+    border-radius: 11px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.20);
+  }
+  .meilleur-film-rectangle {
+    border: 6px solid #000;
+  }
+  .meilleur-film-rectangle .bestmovie-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    position: static;
+  }
+  .meilleur-film-rectangle .affichefilm {
+    order: 1;
+    width: 70vw;
+    max-width: 96vw;
+    margin: 0 auto 4px auto;
+    align-self: center;
+  }
+  .meilleur-film-rectangle .info {
+    order: 2;
+    width: 100%;
+    text-align: center;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .meilleur-film-rectangle .button-bas {
+    position: static !important;
+    margin-top: 12px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    align-self: center !important;
+    width: auto !important;
+    min-width: 90px !important;
+    display: inline-flex !important;
+    right: auto !important;
+    left: auto !important;
+    bottom: auto !important;
+    order: 3;
+    font-size: 0.95rem;
+    padding: 0 16px;
+  }
+  .section-title,
+  .menu-deroulant {
+    font-size: 6vw;
+  }
+  .custom-select-wrapper {
+    width: 58vw;
+    height: 48px;
+  }
+  .menu-deroulant {
+    font-size: 5vw;
+    padding-right: 40px;
+  }
+  .custom-arrow {
+    font-size: 5vw;
+    width: 28px;
+    height: 28px;
+    right: 8px;
+  }
+  #banner,
+  .category-section,
+  .category-rectangle {
+    width: 98vw;
+    max-width: 98vw;
+    min-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .category-rectangle,
+  .category-grid {
+    min-height: 180px;
+    height: auto;
+  }
+}
+
+/* --- Mobile Small (≤ 375px) --- */
+@media (max-width: 375px) {
+  .section-title,
+  .menu-deroulant {
+    font-size: 1.1rem;
+  }
+  .category-grid {
+    width: 76vw;
+    gap: 8px;
+  }
+  .custom-select-wrapper {
+    width: 99vw;
+  }
+}
+
+/* --- Mobile XS (≤ 320px) --- */
+@media (max-width: 340px) {
+  .category-grid {
+    width: 73vw;
+    gap: 5px;
+  }
+  .modal-content {
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+}
+
+/************************
+Modale responsive avec croix et bouton fermer
+*************************/
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.77);
+  z-index: 1001;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* La modale reste centrée + simple responsive */
 .modal-content {
+  position: relative;
   background: #fff;
-  border: 3px solid #191919;
+  border: 2px solid #222;
   border-radius: 0;
-  max-width: 540px;
-  width: 96vw;
-  padding: 24px 20px 32px 20px; /* padding bas pour laisser de l'espace au bouton */
+  width: 620px;
+  max-width: 98vw;
+  min-width: 0;
   box-sizing: border-box;
+  padding: 28px 18px 32px 22px;
+  box-shadow: 0 2px 22px rgba(0,0,0,0.07);
   display: flex;
   flex-direction: column;
-  position: relative;
-  /* Pas de overflow ni de height ici */
+  gap: 25px;
+  font-family: "Oswald", Arial, sans-serif;
 }
 
 .modal-main-row {
   display: flex;
   flex-direction: row;
-  gap: 22px;
-  margin-bottom: 0; /* on gère l'espacement avec le bouton */
+  gap: 32px;
+  align-items: stretch;
 }
-
 .modal-details {
   flex: 1 1 0;
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-
 .modal-title {
-  font-family: "Oswald", Arial, sans-serif;
-  font-size: 2rem;
+  font-size: 1.13rem;
   font-weight: 700;
-  margin: 0 0 8px 0;
+  line-height: 1.12;
+  margin: 0 0 4px 0;
+  word-break: break-word;
 }
-
 .modal-meta {
-  color: #111;
-  font-size: 1.07rem;
-  font-weight: 500;
-  margin: 0 0 7px 0;
+  font-size: 0.98rem;
+  color: #181818;
+  margin-bottom: 6px;
+  font-weight: 600;
+  line-height: 1.28;
 }
-
-.modal-directors,
-.modal-description,
-.modal-actors {
-  font-size: 1.06rem;
-  margin: 5px 0;
-}
-
 .modal-description {
-  font-weight: 400;
-  line-height: 1.4;
-}
-
-.modal-actors {
   color: #222;
-  font-style: italic;
+  font-size: 1.01rem;
+  font-weight: 400;
+  margin-bottom: 9px;
+  line-height: 1.38;
 }
-
-/* Affiche du film */
 .modal-img-wrapper {
-  flex-shrink: 0;
-  width: 160px;
+  width: 180px;
+  min-width: 120px;
+  max-width: 240px;
+  margin: 0;
+  align-self: flex-start;
+  box-shadow: 0 1.5px 9px rgba(0,0,0,0.13);
+  border: 1.5px solid #222;
+  background: #eee;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
 }
-
 .modal-movie-img {
   width: 100%;
-  max-width: 150px;
   height: auto;
-  min-height: 150px;
   object-fit: cover;
-  border: 2px solid #111;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
+  border: none;
+  min-height: 80px;
+  max-height: 200px;
+}
+.modal-actors {
+  color: #181818;
+  font-size: 0.99rem;
+  margin: 7px 0 0 0;
+  font-style: italic;
+  line-height: 1.26;
 }
 
-/* Bouton "Fermer" bien centré, bien espacé */
-.modal-close {
-  align-self: center;
-  margin-top: 36px; /* espace suffisant au-dessus */
-  min-width: 140px;
-  max-width: 90%;
-  height: 48px;
-  padding: 0 42px;
-  font-family: "Oswald", Arial, sans-serif;
-  font-weight: 700;
-  font-size: 1.2rem;
+/* CROIX : visible mobile/tablette uniquement */
+.modal-x-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: #fa0b0b;
+  font-size: 2.5em;
+  font-weight: 900;
+  cursor: pointer;
+  line-height: 1;
+  z-index: 5;
+  display: none;
+  padding: 0 6px 0 6px;
+  transition: color 0.12s;
+}
+.modal-x-close:hover { color: #b10000; }
+
+@media (max-width: 900px) {
+  .modal-content {
+    width: 98vw;
+    max-width: 98vw;
+    padding: 18px 4vw 18px 4vw;
+    gap: 10px;
+  }
+  .modal-main-row {
+    flex-direction: column;
+    gap: 14px;
+    align-items: stretch;
+  }
+  .modal-img-wrapper {
+    width: 96vw;
+    max-width: 340px;
+    margin: 0 auto 7px auto;
+  }
+  .modal-x-close { display: block; }
+  .modal-close { display: none !important; }
+}
+@media (min-width: 901px) {
+  .modal-x-close { display: none !important; }
+  .modal-close { display: flex !important; }
+}
+
+/* ----------------------
+Voir plus / Voir moins boutons
+---------------------- */
+.voir-plus-btn, .voir-moins-btn {
+  min-width: 100px;
+  height: 44px;
   border-radius: 22px;
   background: #fa0b0b;
   color: #fff;
+  font-size: 1.2rem;
+  font-weight: 600;
   border: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.13);
+  padding: 0 24px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: background 0.2s;
-  display: block;
+  font-family: "Oswald", Arial, sans-serif;
+  margin: 30px auto 0 auto;
+  outline: none;
 }
-
-.modal-close:hover {
+.voir-plus-btn:hover, .voir-moins-btn:hover,
+.voir-plus-btn:focus, .voir-moins-btn:focus {
   background: #b10000;
 }
-
-/* Responsive mobile */
-@media (max-width: 700px) {
-  .modal-content {
-    width: 98vw;
-    padding: 16px 6vw 28px 6vw;
+@media (min-width: 901px) {
+  .voir-plus-btn, .voir-moins-btn { display: none !important; }
+}
+@media (max-width: 900px) {
+  .voir-plus-btn, .voir-moins-btn {
+    width: auto;
+    max-width: 90vw;
+    margin: 24px auto 0 auto;
+    font-size: 1.13rem;
+    min-width: 90px;
+    height: 40px;
   }
-
-  .modal-main-row {
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .modal-img-wrapper {
-    width: 100%;
-    margin-bottom: 8px;
-    min-height: 100px;
-  }
-
-  .modal-close {
-    margin-top: 24px;
-  }
+}
+.category-section .voir-plus-btn,
+.category-section .voir-moins-btn {
+  display: block;
+  margin: 30px auto 0 auto;
+  float: none;
+  align-self: center;
+  justify-self: center;
+  position: relative;
+}
+.category-rectangle {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
 }

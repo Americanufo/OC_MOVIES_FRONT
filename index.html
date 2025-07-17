@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1" >
   <title>JustStreamIt</title>
-  <link href="style.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" >
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet" >
   <script src="index.js" type="module"></script>
 </head>
 <body>
   <header id="banner">
-    <img src="/images/logo.png" alt="logo oc movies" class="logo" />
+    <img src="/images/logo.png" alt="logo oc movies" class="logo" >
     <h1>Vidéos à la demande</h1>
   </header>
 
@@ -20,10 +20,7 @@
       <h2 class="section-title">Meilleur film</h2>
       <div class="meilleur-film-rectangle">
         <div class="bestmovie-content">
-          <!-- Image générique, remplacée dynamiquement -->
-          <img src="" alt="" class="affichefilm" />
           <div class="info">
-            <!-- Titre et résumé génériques, remplacés dynamiquement -->
             <span class="titre-film">Titre du meilleur film</span>
             <span class="desc-film">Résumé du meilleur film.</span>
           </div>
@@ -36,13 +33,14 @@
     <section class="category-section">
       <h2 class="section-title">Films les mieux notés</h2>
       <div class="category-grid">
-        <div class="category-item"><img src="/images/titanic.png" alt="titanic"></div>
-        <div class="category-item"><img src="/images/retour.png" alt="retour"></div>
-        <div class="category-item"><img src="/images/scarface.png" alt="scarface"></div>
-        <div class="category-item"><img src="/images/pulpfiction.png" alt="pulpfiction"></div>
-        <div class="category-item"><img src="/images/parain.png" alt="parain"></div>
-        <div class="category-item"><img src="/images/alien.png" alt="alien"></div>
+        <div class="category-item"></div>
+        <div class="category-item"></div>
+        <div class="category-item"></div>
+        <div class="category-item"></div>
+        <div class="category-item"></div>
+        <div class="category-item"></div>
       </div>
+      <button class="voir-plus-btn">Voir plus</button>
     </section>
 
     <!-- Mystery -->
@@ -57,6 +55,7 @@
           <div class="category-item"></div>
           <div class="category-item"></div>
         </div>
+        <button class="voir-plus-btn">Voir plus</button>
       </div>
     </section>
 
@@ -72,46 +71,50 @@
           <div class="category-item"></div>
           <div class="category-item"></div>
         </div>
+        <button class="voir-plus-btn">Voir plus</button>
       </div>
     </section>
 
     <!-- Autres catégories avec menu déroulant -->
     <section class="category-section" id="other-category-section">
-  <div class="category-header">
-    <h2 class="section-title">Autres :</h2>
-    <div class="custom-select-wrapper">
-      <select class="menu-deroulant"></select>
-      <span class="custom-arrow">▼</span>
-    </div>
-  </div>
-  <div class="category-rectangle">
-    <div class="category-grid">
-      <div class="category-item"></div>
-      <div class="category-item"></div>
-      <div class="category-item"></div>
-      <div class="category-item"></div>
-      <div class="category-item"></div>
-      <div class="category-item"></div>
-    </div>
+      <div class="category-header">
+        <h2 class="section-title">Autres :</h2>
+        <div class="custom-select-wrapper">
+          <select class="menu-deroulant"></select>
+          <span class="custom-arrow">▼</span>
+        </div>
+      </div>
+      <div class="category-rectangle">
+        <div class="category-grid">
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+          <div class="category-item"></div>
+        </div>
+        <button class="voir-plus-btn">Voir plus</button>
       </div>
     </section>
   </main>
+
+  <!-- MODAL responsive avec croix -->
   <div id="movie-modal" class="modal-overlay" style="display:none;">
-  <div class="modal-content">
-    <div class="modal-main-row">
-      <div class="modal-details">
-        <h2 class="modal-title"></h2>
-        <p class="modal-meta"></p>
-        <p class="modal-directors"><strong>Réalisé par:</strong> <span></span></p>
-        <p class="modal-description"></p>
-        <p class="modal-actors"></p>
+    <div class="modal-content">
+      <button class="modal-x-close" aria-label="Fermer la modale" type="button">×</button>
+      <div class="modal-main-row">
+        <div class="modal-details">
+          <h2 class="modal-title">Titre du film</h2>
+          <p class="modal-meta"></p>
+          <p class="modal-directors"><strong>Réalisé par:</strong> <span></span></p>
+          <p class="modal-description"></p>
+          <p class="modal-actors"></p>
+        </div>
+        <div class="modal-img-wrapper">
+        </div>
       </div>
-      <div class="modal-img-wrapper">
-        <img class="modal-movie-img" src="" alt="" />
-      </div>
+      <button class="button-bas modal-close">Fermer</button>
     </div>
-    <button class="button-bas modal-close">Fermer</button>
   </div>
-</div>
 </body>
 </html>

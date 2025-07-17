@@ -1,4 +1,3 @@
-// Fonction utilitaire pour remplir une grille de films avec overlay
 function fillMovieGrid(movies, gridSelector) {
   const gridItems = document.querySelectorAll(gridSelector);
   gridItems.forEach(item => item.innerHTML = "");
@@ -8,14 +7,13 @@ function fillMovieGrid(movies, gridSelector) {
         <img src="${movie.image_url}" alt="${movie.title}">
         <div class="movie-overlay">
           <span class="movie-title">${movie.title}</span>
-          <button class="movie-detail-btn">Détails</button>
+          <button class="movie-detail-btn" data-movie-id="${movie.id}">Détails</button>
         </div>
       `;
     }
   });
 }
 
-// Récupère les films selon les paramètres donnés
 async function fetchMovies(params) {
   const url = new URL("http://localhost:8000/api/v1/titles/");
   Object.entries(params).forEach(([key, value]) => url.searchParams.append(key, value));
@@ -24,7 +22,6 @@ async function fetchMovies(params) {
   return (await response.json()).results;
 }
 
-// Meilleur film (détail)
 async function updateBestMovie() {
   try {
     const best = await fetchMovies({ sort_by: "-imdb_score", page_size: 1 });
@@ -32,17 +29,21 @@ async function updateBestMovie() {
     const detailResponse = await fetch(`http://localhost:8000/api/v1/titles/${bestMovie.id}`);
     const detailData = await detailResponse.json();
     const section = document.querySelector('.meilleur-film-rectangle');
-    section.querySelector('.affichefilm').src = detailData.image_url;
-    section.querySelector('.affichefilm').alt = detailData.title;
+    const affiche = new Image()
+    affiche.classList.add("affichefilm")
+    affiche.src = detailData.image_url;
+    affiche.alt = detailData.title;
+    section.querySelector(".bestmovie-content").insertAdjacentElement("afterbegin",affiche)
     section.querySelector('.titre-film').textContent = detailData.title;
     section.querySelector('.desc-film').textContent =
       detailData.description || detailData.long_description || "Résumé indisponible.";
+    // Ajoute l'id sur le bouton détails
+    section.querySelector('.button-bas.movie-detail-btn').dataset.movieId = bestMovie.id;
   } catch (error) {
     console.error(error);
   }
 }
 
-// Grille top films (tous genres ou filtré)
 async function updateMovieGrid({ genre = null, gridSelector }) {
   try {
     const params = { sort_by: "-imdb_score", page_size: 6 };
@@ -54,7 +55,6 @@ async function updateMovieGrid({ genre = null, gridSelector }) {
   }
 }
 
-// Récupère toutes les catégories (pagination)
 async function fetchAllGenres() {
   let genres = [], url = "http://localhost:8000/api/v1/genres/";
   while (url) {
@@ -66,7 +66,6 @@ async function fetchAllGenres() {
   return genres;
 }
 
-// Menu déroulant dynamique
 async function populateGenreDropdown() {
   const select = document.querySelector('.menu-deroulant');
   select.innerHTML = "";
@@ -83,52 +82,7 @@ async function populateGenreDropdown() {
   }
 }
 
-// Événements au chargement du DOM
-document.addEventListener('DOMContentLoaded', async () => {
-  updateBestMovie();
-  updateMovieGrid({ gridSelector: '.category-section:nth-of-type(2) .category-grid .category-item' }); // Top films
-  updateMovieGrid({ genre: 'Mystery', gridSelector: '.category-section:nth-of-type(3) .category-grid .category-item' });
-  updateMovieGrid({ genre: 'Action', gridSelector: '.category-section:nth-of-type(4) .category-grid .category-item' });
-
-  await populateGenreDropdown();
-  const select = document.querySelector('.menu-deroulant');
-  select.addEventListener('change', (e) => {
-    updateMovieGrid({ genre: e.target.value, gridSelector: '#other-category-section .category-grid .category-item' });
-  });
-});
-
-// -------- MODALE FILM –– donne à chaque .category-item et au best-movie son id --------
-
-// Ajoute les id films dans grid pour la modale
-function patchMovieIdsInGrid(movies, gridSelector) {
-  const gridItems = document.querySelectorAll(gridSelector);
-  movies.forEach((movie, index) => {
-    if (gridItems[index]) {
-      gridItems[index].dataset.movieId = movie.id;
-    }
-  });
-}
-
-// Modifie la fonction fillMovieGrid pour intégrer les id
-const _fillMovieGrid = fillMovieGrid;
-fillMovieGrid = function(movies, gridSelector) {
-  _fillMovieGrid(movies, gridSelector);
-  patchMovieIdsInGrid(movies, gridSelector);
-}
-
-// Stocke aussi l'id sur .meilleur-film-rectangle
-const _updateBestMovie = updateBestMovie;
-updateBestMovie = async function() {
-  await _updateBestMovie();
-  try {
-    const best = await fetchMovies({ sort_by: "-imdb_score", page_size: 1 });
-    if (best[0]) {
-      document.querySelector('.meilleur-film-rectangle').dataset.movieId = best[0].id;
-    }
-  } catch {}
-}
-
-// Helper pour formater les infos du film
+// Formate les infos du film pour la modale
 function formatMovieMeta(data) {
   const genres = (data.genres || []).join(', ') || "Genre inconnu";
   const year = data.date_published || "Date inconnue";
@@ -140,14 +94,18 @@ function formatMovieMeta(data) {
   return `${year} - ${genres}<br>${rated} - ${duration} (${country})<br><b>${score}</b><br>${boxOffice}`;
 }
 
-// Affiche la modale avec toutes les informations du film
 async function showMovieModal(movieId) {
   try {
     const response = await fetch(`http://localhost:8000/api/v1/titles/${movieId}`);
     const data = await response.json();
+    const wrapper = document.querySelector('#movie-modal .modal-img-wrapper');
+    wrapper.innerHTML = "";
+    const img = new Image();
+    img.classList.add("modal-movie-img");
+    img.src = data.image_url || "https://via.placeholder.com/180x260?text=Affiche"; // fallback W3C compliant
+    img.alt = data.title || "Affiche du film";
+    wrapper.appendChild(img);
 
-    document.querySelector('#movie-modal .modal-movie-img').src = data.image_url || '';
-    document.querySelector('#movie-modal .modal-movie-img').alt = data.title || '';
     document.querySelector('#movie-modal .modal-title').textContent = data.title || '';
     document.querySelector('#movie-modal .modal-meta').innerHTML = formatMovieMeta(data);
     document.querySelector('#movie-modal .modal-directors span').textContent = (data.directors || []).join(', ') || "Inconnu";
@@ -161,41 +119,83 @@ async function showMovieModal(movieId) {
   }
 }
 
-// Ferme la modale
+
 function closeMovieModal() {
   document.getElementById('movie-modal').style.display = "none";
   document.body.style.overflow = "";
 }
 
-// Gestion des clics
-document.body.addEventListener("click", (e) => {
-  // Bouton détails dans les grilles
-  const detailBtn = e.target.closest(".movie-detail-btn");
-  if (detailBtn) {
-    let movieItem = detailBtn.closest('.category-item');
-    if (movieItem && movieItem.dataset.movieId) {
-      showMovieModal(movieItem.dataset.movieId);
-      return;
-    }
-    // Ou le film vedette
-    if (e.target.closest('.meilleur-film-rectangle')) {
-      let bmId = e.target.closest('.meilleur-film-rectangle').dataset.movieId;
-      if (bmId) showMovieModal(bmId);
-      return;
-    }
-  }
-  // Cliquer sur l'overlay ferme aussi
-  if (e.target === document.getElementById('movie-modal')) closeMovieModal();
-});
+document.addEventListener('DOMContentLoaded', async () => {
+  await updateBestMovie();
+  await updateMovieGrid({ gridSelector: '.category-section:nth-of-type(2) .category-grid .category-item' });
+  await updateMovieGrid({ genre: 'Mystery', gridSelector: '.category-section:nth-of-type(3) .category-grid .category-item' });
+  await updateMovieGrid({ genre: 'Action', gridSelector: '.category-section:nth-of-type(4) .category-grid .category-item' });
 
-// Fermeture explicite
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelector('#movie-modal .modal-close').addEventListener('click', closeMovieModal);
-});
+  await populateGenreDropdown();
 
-// Fermer avec Esc
-window.addEventListener('keydown', (e) => {
-  if (e.key === "Escape" && document.getElementById('movie-modal').style.display === "flex") {
-    closeMovieModal();
-  }
+  document.querySelector('.menu-deroulant').addEventListener('change', (e) => {
+    updateMovieGrid({ genre: e.target.value, gridSelector: '#other-category-section .category-grid .category-item' });
+  });
+
+  // Clic détail meilleur film (bouton bas)
+  document.querySelector('.meilleur-film-rectangle .movie-detail-btn').addEventListener('click', e => {
+    const btn = e.currentTarget;
+    if (btn.dataset.movieId) showMovieModal(btn.dataset.movieId);
+  });
+
+  // Délégation clic sur les boutons "Détails" des films caté
+  document.body.addEventListener('click', e => {
+    // détails sur un item catégorie
+    const detailBtn = e.target.closest('.category-item .movie-detail-btn');
+    if (detailBtn && detailBtn.dataset.movieId) {
+      showMovieModal(detailBtn.dataset.movieId);
+    }
+  });
+
+  // MODALE : fermeture croix rouge (mobile/tablette)
+  const xBtn = document.querySelector('#movie-modal .modal-x-close');
+  if (xBtn) xBtn.addEventListener('click', closeMovieModal);
+
+  // MODALE : fermeture bouton bas (desktop)
+  const closeBtn = document.querySelector('#movie-modal .modal-close');
+  if (closeBtn) closeBtn.addEventListener('click', closeMovieModal);
+
+  // Clique sur overlay (en-dehors du contenu)
+  document.getElementById('movie-modal').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeMovieModal();
+  });
+
+  // ESC pour fermer
+  window.addEventListener('keydown', e => {
+    if (e.key === "Escape" && document.getElementById('movie-modal').style.display === "flex") {
+      closeMovieModal();
+    }
+  });
+
+  // VOIR PLUS / VOIR MOINS
+  document.querySelectorAll('.voir-plus-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      let grid = btn.previousElementSibling;
+      if (!grid || !grid.classList.contains('category-grid')) {
+        grid = btn.parentElement.querySelector('.category-grid');
+      }
+      if (grid) grid.querySelectorAll('.category-item').forEach(item => item.style.display = 'flex');
+      btn.style.display = 'none';
+      let btnMoins = document.createElement('button');
+      btnMoins.className = 'voir-moins-btn';
+      btnMoins.innerText = 'Voir moins';
+      btn.parentElement.appendChild(btnMoins);
+      btnMoins.addEventListener('click', () => {
+        let maxFilms = 6;
+        if (window.innerWidth <= 425) maxFilms = 2;
+        else if (window.innerWidth <= 900) maxFilms = 4;
+        grid.querySelectorAll('.category-item').forEach((item, idx) => {
+          item.style.display = (idx < maxFilms) ? 'flex' : 'none';
+        });
+        btnMoins.remove();
+        btn.style.display = 'flex';
+      });
+    });
+  });
+
 });
