@@ -1,5 +1,5 @@
 /************************
-BASE : Styles Desktop 
+Style Desktop 
 *************************/
 
 body {
@@ -74,7 +74,7 @@ main {
   padding-left: 0;
 }
 
-/* Rectangle "Meilleur film" AVEC bordure épaisse */
+/* Rectangle "Meilleur film" avec bordure épaisse */
 .meilleur-film-rectangle {
   width: 100%;
   background: rgba(255,255,255,0.95);
@@ -147,18 +147,16 @@ main {
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   transition: background 0.2s;
 }
-
 .meilleur-film-rectangle .button-bas {
   position: absolute;
   bottom: 32px;
   right: -15px;
 }
-
 .button-bas:hover {
   background: #b10000;
 }
 
-/* Categories RECTANGLES : PAS DE BORDURE */
+/* Categories RECTANGLES sans bordure */
 .category-rectangle {
   width: 100%;
   max-width: 844px;
@@ -218,7 +216,7 @@ main {
   background-color: rgba(217, 217, 217, 0.3);
 }
 
-/* Overlay titre+detail bouton */
+/* Overlay titre + détail bouton */
 .movie-overlay {
   position: absolute;
   left: 0;
@@ -231,7 +229,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 10px 16px 10px 16px;
+  padding: 10px 16px;
   box-sizing: border-box;
 }
 .movie-title {
@@ -498,20 +496,45 @@ Responsive Mobile
   .menu-deroulant {
     font-size: 6vw;
   }
+
+  /* Menu déroulant */
   .custom-select-wrapper {
+    position: relative;
+    display: inline-block;
     width: 58vw;
     height: 48px;
   }
   .menu-deroulant {
-    font-size: 5vw;
+    width: 100%;
+    height: 48px;
     padding-right: 40px;
+    font-family: "Oswald", Arial, sans-serif;
+    font-size: 5vw;
+    cursor: pointer;
+  
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
   }
   .custom-arrow {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    pointer-events: none;
     font-size: 5vw;
     width: 28px;
     height: 28px;
-    right: 8px;
+    color: #333;
+    user-select: none;
+    font-weight: 700;
   }
+
   #banner,
   .category-section,
   .category-rectangle {
@@ -558,7 +581,6 @@ Responsive Mobile
 /************************
 Modale responsive avec croix et bouton fermer
 *************************/
-
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
@@ -569,7 +591,7 @@ Modale responsive avec croix et bouton fermer
   justify-content: center;
 }
 
-/* La modale reste centrée + simple responsive */
+/* La modale reste centrée */
 .modal-content {
   position: relative;
   background: #fff;
@@ -599,6 +621,7 @@ Modale responsive avec croix et bouton fermer
   flex-direction: column;
   gap: 8px;
 }
+
 .modal-title {
   font-size: 1.13rem;
   font-weight: 700;
@@ -647,7 +670,7 @@ Modale responsive avec croix et bouton fermer
   line-height: 1.26;
 }
 
-/* CROIX : visible mobile/tablette uniquement */
+/* Croix de fermeture : visible mobile/tablette uniquement */
 .modal-x-close {
   position: absolute;
   top: 12px;
@@ -746,3 +769,39 @@ Voir plus / Voir moins boutons
   align-items: center;
 }
 
+/* Styles menu déroulant */
+.custom-select-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 200px; 
+}
+
+.menu-deroulant {
+  width: 100%;
+  height: 40px;
+  padding-right: 32px;
+  font-family: "Oswald", Arial, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1.2rem;
+  color: #333;
+  user-select: none;
+  font-weight: 700;
+}

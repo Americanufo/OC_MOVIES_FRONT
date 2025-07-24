@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (btn.dataset.movieId) showMovieModal(btn.dataset.movieId);
   });
 
-  // Délégation clic sur les boutons "Détails" des films caté
+  // Délégation clic sur les boutons "Détails" des films catégories
   document.body.addEventListener('click', e => {
     // détails sur un item catégorie
     const detailBtn = e.target.closest('.category-item .movie-detail-btn');
@@ -199,3 +199,27 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
 });
+
+// Ajustement de l'image du film dans la modale pour la version tablette et mobile 
+function adjustModalImgPosition() {
+  const modalDetails = document.querySelector('.modal-details');
+  const modalImg = document.querySelector('.modal-img-wrapper');
+  const modalDescription = modalDetails.querySelector('.modal-description');
+  const modalActors = modalDetails.querySelector('.modal-actors');
+
+  if(window.innerWidth <= 900) {
+    // insérer img entre description et acteurs
+    if (modalImg.parentNode !== modalDetails) {
+      modalDescription.after(modalImg);
+    }
+  } else {
+    // remettre img en dehors modal-details (dernier enfant de modal-main-row)
+    const modalMainRow = document.querySelector('.modal-main-row');
+    if (modalImg.parentNode !== modalMainRow) {
+      modalMainRow.appendChild(modalImg);
+    }
+  }
+}
+
+window.addEventListener('resize', adjustModalImgPosition);
+window.addEventListener('load', adjustModalImgPosition);
